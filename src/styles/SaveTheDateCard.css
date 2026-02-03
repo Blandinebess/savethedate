@@ -1,0 +1,231 @@
+/* Download button styles */
+.download-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #6a0dad;
+  color: gold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: 0.3s;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+
+.download-btn:hover {
+  background: #8b2dd1;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.8);
+}
+
+/* Card content */
+.card-content {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  text-shadow:
+    0 0 8px #6a0dad,
+    0 0 2px #000;
+}
+
+.card-content .simple-text {
+  margin: 4px 0;
+  line-height: 1.1;
+}
+
+/* Wrapper */
+.save-date-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Background video */
+.bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -3;
+  animation: slowZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+/* Purple gradient overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(80, 0, 120, 0.55),
+    rgba(40, 0, 70, 0.65)
+  );
+  backdrop-filter: blur(3px);
+  z-index: -2;
+}
+
+/* Purple vignette */
+.save-date-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 55%, rgba(50, 0, 80, 0.7));
+  z-index: -1;
+}
+
+/* Envelope container */
+.envelope-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1.5s ease-out;
+}
+
+/* Tap to open text */
+.tap-text {
+  position: absolute;
+  top: -50px;
+  font-size: 22px;
+  color: gold;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* Card */
+.card {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 360px;
+  height: 540px;
+  transform: translate(-50%, -40%) scale(0.95);
+  opacity: 0;
+  transition: all 1.8s ease-out;
+  z-index: 3;
+  filter: drop-shadow(0 0 25px rgba(120, 0, 180, 0.45));
+  pointer-events: none;
+}
+
+.card.show {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Envelope */
+.envelope {
+  width: 420px;
+  transition: all 1.5s ease-out;
+  z-index: 2;
+  opacity: 0;
+  animation: envelopeFade 1.2s ease forwards;
+  filter: drop-shadow(0 0 20px rgba(120, 0, 180, 0.4));
+}
+
+@keyframes envelopeFade {
+  to { opacity: 1; }
+}
+
+/* Envelope opens + disappears */
+.envelope-container.open .envelope {
+  transform: translateY(-180px) scale(1.1);
+  opacity: 0;
+  transition: all 1.6s ease-out;
+}
+
+.envelope-container.open {
+  opacity: 0;
+  transition: opacity 1.8s ease-out 0.6s;
+  pointer-events: none;
+}
+
+/* Floral frame */
+.floral-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 1;
+  animation: frameFade 1.8s ease forwards;
+  filter: drop-shadow(0 0 25px rgba(120, 0, 180, 0.55));
+}
+
+@keyframes frameFade {
+  from { opacity: 0; transform: scale(1.02); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* SIMPLE ELEGANT TEXT ANIMATION */
+.simple-text {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: softFade 1.6s ease-out forwards;
+}
+
+@keyframes softFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.simple-text:nth-child(1) { animation-delay: 0.3s; }
+.simple-text:nth-child(2) { animation-delay: 0.6s; }
+.simple-text:nth-child(3) { animation-delay: 0.9s; }
+.simple-text:nth-child(4) { animation-delay: 1.2s; }
+.simple-text:nth-child(5) { animation-delay: 1.5s; }
+.simple-text:nth-child(6) { animation-delay: 1.8s; }
+
+/* Loading screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeOut 1s ease forwards;
+  animation-delay: 1.5s;
+}
+
+.initials {
+  font-size: 60px;
+  color: #d9b3ff;
+  letter-spacing: 8px;
+  text-shadow: 0 0 25px rgba(150, 0, 200, 0.7);
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
